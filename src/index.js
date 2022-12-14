@@ -3,11 +3,14 @@ const plus = document.querySelector("#plus");
 const minus = document.querySelector("#minus");
 const count = document.querySelector("#count");
 
+const ADD = "ADD";
+const MINUS = "MINUS";
+
 const reducer = (state = 0, action) => {
   switch (action.type) {
-    case "PLUS":
+    case ADD:
       return ++state;
-    case "MINUS":
+    case MINUS:
       return --state;
     default:
       return state;
@@ -22,8 +25,8 @@ const onChange = () => {
 store.subscribe(onChange);
 
 plus.addEventListener("click", (e) => {
-  store.dispatch({ type: "PLUS" });
+  store.dispatch({ type: ADD });
 });
 minus.addEventListener("click", (e) => {
-  store.dispatch({ type: "MINUS" });
+  store.dispatch({ type: MINUS });
 });
