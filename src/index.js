@@ -4,12 +4,13 @@ const minus = document.querySelector("#minus");
 const count = document.querySelector("#count");
 
 const reducer = (state = 0, action) => {
-  if (action.type === "PLUS") {
-    return ++state;
-  } else if (action.type === "MINUS") {
-    return --state;
-  } else {
-    return state;
+  switch (action.type) {
+    case "PLUS":
+      return ++state;
+    case "MINUS":
+      return --state;
+    default:
+      return state;
   }
 };
 const store = createStore(reducer);
