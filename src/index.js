@@ -1,10 +1,28 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
+import { createStore } from "redux";
+const plus = document.querySelector("#plus");
+const minus = document.querySelector("#minus");
+const count = document.querySelector("#count");
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+const reducer = (state = 0, action) => {
+  if (action.type === "PLUS") {
+    return ++state;
+  } else if (action.type === "MINUS") {
+    return --state;
+  } else {
+    return state;
+  }
+};
+const store = createStore(reducer);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+const onChange = () => {
+  count.innerText = store.getState();
+};
+
+store.subscribe(onChange);
+
+plus.addEventListener("click", (e) => {
+  store.dispatch({ type: "PLUS" });
+});
+minus.addEventListener("click", (e) => {
+  store.dispatch({ type: "MINUS" });
+});
