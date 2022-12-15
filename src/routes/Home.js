@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { actionCreators } from "../store/store";
+import { add, remove } from "../store/store";
 
 function Home() {
   const [text, setText] = useState("");
@@ -17,11 +17,12 @@ function Home() {
   function onSubmit(e) {
     e.preventDefault();
     setText("");
-    dispatch(actionCreators.addTodo(text));
+    dispatch(add(text));
   }
 
   function onDeleteHandler(e) {
-    dispatch(actionCreators.deleteTodo(parseInt(e.target.parentNode.id)));
+    console.log("remove");
+    dispatch(remove(parseInt(e.target.parentNode.id)));
   }
 
   return (
